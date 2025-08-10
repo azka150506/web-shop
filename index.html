@@ -1,377 +1,509 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Tahu Bakso Mba Lis — Level Sultan</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --bg:#0f1720;           /* deep background */
-    --card:#0f1728;         /* slightly different dark */
-    --muted:#cbd5e1;
-    --gold:#D4AF37;         /* classy gold */
-    --accent:#38d3e6;       /* cyan accent for CTA */
-    --glass: rgba(255,255,255,0.04);
-    --radius:14px;
-    --max-width:1200px;
-  }
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tahu Bakso • Ultimate Premium</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg-1:#080217;
+      --bg-2:#13042f;
+      --neon-1:#8b5cf6;   /* purple */
+      --neon-2:#00e5ff;   /* cyan */
+      --gold:#f6c85f;
+      --muted:#b7abc1;
+      --card:#0f0a18;
+      --glass: rgba(255,255,255,0.04);
+      --radius:14px;
+      --max-width:1100px;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+      background:linear-gradient(180deg,var(--bg-1),var(--bg-2));
+      color:#fff; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      -webkit-font-feature-settings:"tnum"; font-feature-settings:"tnum";
+    }
 
-  /* RESET */
-  *{box-sizing:border-box}
-  html,body{height:100%}
-  body{
-    margin:0;
-    font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-    background:linear-gradient(180deg,#071019 0%, #0f1720 50%, #081018 100%);
-    color:var(--muted);
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-    line-height:1.45;
-  }
+    /* ---------- OPENING (neon headline) ---------- */
+    #opening{
+      height:100vh; width:100%; display:flex; align-items:center; justify-content:center; text-align:center;
+      background:
+        radial-gradient(60% 60% at 10% 20%, rgba(139,92,246,0.12), transparent 10%),
+        radial-gradient(60% 60% at 90% 80%, rgba(0,229,255,0.06), transparent 14%);
+      position:relative; overflow:hidden;
+    }
+    .opening-card{ transform:translateY(6px); }
+    .brand-neon{
+      font-size:4.2rem; font-weight:900; letter-spacing:0.12em; line-height:0.9;
+      color:transparent; -webkit-background-clip:text; background-clip:text;
+      background:linear-gradient(90deg,var(--neon-1),var(--neon-2));
+      -webkit-text-stroke: 0.6px rgba(255,255,255,0.06);
+      text-shadow: 0 10px 30px rgba(0,0,0,0.35);
+      filter:drop-shadow(0 10px 40px rgba(139,92,246,0.12));
+    }
+    .subtag{
+      margin-top:14px; font-weight:500; font-size:1.05rem; color:rgba(255,255,255,0.92);
+      text-shadow:0 6px 20px rgba(0,229,255,0.03);
+    }
 
-  a{color:inherit;text-decoration:none}
-  img{display:block;max-width:100%}
+    /* quick little shimmer */
+    .shimmer {
+      position:absolute; inset:0; pointer-events:none; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.02), transparent);
+      transform:translateX(-100%); animation: shimmer 2.6s ease-in-out infinite;
+      mix-blend-mode: overlay;
+    }
+    @keyframes shimmer { to { transform: translateX(100%); } }
 
-  /* LAYOUT */
-  .wrap{max-width:var(--max-width);margin:0 auto;padding:28px;}
+    /* ---------- Container & header ---------- */
+    .wrap{ max-width:var(--max-width); margin:22px auto; padding:18px; }
+    header.site{
+      display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px;
+      border-radius:12px; backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border:1px solid rgba(255,255,255,0.03); box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+    }
+    .brand-row{ display:flex; align-items:center; gap:12px; }
+    .logo-sm{ width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--neon-1),var(--neon-2)); display:grid;place-items:center; font-weight:900; color:#071124; font-size:18px;}
+    .brand-title{ font-weight:800; font-size:18px; color:#fff; letter-spacing:0.02em; }
+    .brand-sub{ font-size:12px; color:var(--muted); margin-top:2px; }
 
-/* ---------- OPENING / HERO ---------- */
-  .hero {
-    position:relative;
-    height:82vh;
-    min-height:520px;
-    border-radius:18px;
-    overflow:hidden;
-    margin:12px;
-    box-shadow: 0 12px 50px rgba(2,6,23,0.6), inset 0 0 120px rgba(0,0,0,0.25);
-  }
+    nav.inline{ display:flex; gap:8px; align-items:center; }
+    .btn{ padding:8px 12px; border-radius:10px; cursor:pointer; border:1px solid rgba(255,255,255,0.04);
+      background: linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); color:#fff; font-weight:600; font-size:14px; }
+    .btn.primary{ background:linear-gradient(90deg,var(--neon-1),var(--neon-2)); color:#071124; box-shadow:0 10px 30px rgba(139,92,246,0.12); border:none; }
 
-  .hero__media{
-    position:absolute; inset:0; z-index:0;
-    background-image:
-      linear-gradient(180deg, rgba(4,7,10,0.55) 10%, rgba(4,7,10,0.28) 50%, rgba(4,7,10,0.7) 100%),
-      url('https://images.unsplash.com/photo-1604908177522-3f3b9e6d6f7b?auto=format&fit=crop&w=1800&q=80');
-    background-size:cover;
-    background-position:center;
-    filter:contrast(1.02) saturate(1.05);
-    transform-origin:center;
-    transition:transform .9s cubic-bezier(.2,.9,.2,1);
-  }
-  .hero:hover .hero__media{ transform:scale(1.03); }
+    /* ---------- Layout ---------- */
+    .hero{ display:grid; grid-template-columns:1fr 360px; gap:20px; margin-top:18px; align-items:start; }
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+      padding:18px; border-radius:12px; box-shadow:0 12px 40px rgba(0,0,0,0.45);
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    h1{ margin:0; font-size:22px; color:#fff; }
+    .muted{ color:var(--muted); font-size:13px; margin-top:6px; }
 
-  .hero__content{
-    position:relative; z-index:2;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    height:100%;
-    padding:36px;
-    text-align:center;
-    color: #fff;
-  }
-  .brand{
-    display:inline-block;
-    background: linear-gradient(90deg, rgba(212,175,55,0.98), rgba(255,224,138,0.15));
-    -webkit-background-clip:text;
-    background-clip:text;
-    color:transparent;
-    font-weight:700;
-    font-size: clamp(28px, 5.5vw, 56px);
-    letter-spacing:1.5px;
-    text-transform:uppercase;
-    margin-bottom:8px;
-  }
-  .slogan{
-    color:rgba(255,255,255,0.95);
-    font-size: clamp(14px, 1.9vw, 20px);
-    max-width:900px;
-    margin:12px 0 22px;
-    font-weight:500;
-  }
+    /* KPI row */
+    .kpi-row{ display:flex; gap:12px; margin-top:14px; flex-wrap:wrap; }
+    .kpi{ flex:1; min-width:150px; padding:12px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
+    .kpi .big{ font-weight:900; color:var(--neon-1); font-size:20px; }
+    .kpi small{ display:block; color:var(--muted); margin-top:6px; }
 
-  .cta-row{
-    display:flex; gap:12px; align-items:center; justify-content:center; flex-wrap:wrap;
-  }
-  .btn{
-    display:inline-flex; align-items:center; gap:10px;
-    padding:12px 18px; border-radius:999px; font-weight:700; cursor:pointer;
-    box-shadow: 0 6px 18px rgba(2,6,23,0.6);
-    transform:translateZ(0);
-    border: 1px solid rgba(255,255,255,0.06);
-  }
-  .btn--order{
-    background: linear-gradient(90deg,var(--accent), #2fc8d9);
-    color:#012126;
-  }
-  .btn--menu{
-    background: rgba(255,255,255,0.06);
-    color:var(--muted);
-  }
-  .hero__badge{
-    margin-top:16px;
-    display:inline-block;
-    background:var(--glass);
-    padding:8px 12px;
-    border-radius:999px;
-    color:var(--muted);
-    font-size:13px;
-    border:1px solid rgba(255,255,255,0.03);
-  }
+    /* MENU items with persentase & CTA */
+    .menu-list{ margin-top:16px; display:grid; gap:12px; }
+    .menu-item{
+      display:flex; gap:12px; align-items:center; padding:14px; border-radius:12px;
+      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));
+      border:1px solid rgba(255,255,255,0.03);
+    }
+    .menu-meta{ flex:1; min-width:0; }
+    .menu-meta h4{ margin:0 0 6px 0; font-size:16px; display:flex; gap:10px; align-items:center; }
+    .badge { font-size:12px; color:var(--muted); background:rgba(255,255,255,0.02); padding:6px 8px; border-radius:999px; }
+    .menu-row{ display:flex; gap:12px; align-items:center; width:100%; }
+    .price { font-weight:900; color:var(--gold); min-width:110px; text-align:right; }
 
-/* ---------- INFO ROW (ABOUT / LOCATION / CONTACT) ---------- */
-  .info{
-    display:grid;
-    grid-template-columns:1fr 380px;
-    gap:28px;
-    margin-top:28px;
-  }
-  .about-card{
-    background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:14px;
-    padding:22px;
-    box-shadow:0 8px 30px rgba(2,6,23,0.45);
-    border:1px solid rgba(255,255,255,0.03);
-  }
-  .about-card h3{color:var(--gold); margin:6px 0 10px; font-size:20px}
-  .about-card p{color:rgba(255,255,255,0.9); margin:0 0 12px; line-height:1.6}
+    /* persentase / progress */
+    .sell-percent{ font-weight:800; color:var(--neon-2); font-size:14px; margin-left:8px; }
+    .percent-bar{ height:8px; background:rgba(255,255,255,0.04); border-radius:999px; overflow:hidden; margin-top:8px; }
+    .percent-fill{ height:100%; width:0%; background:linear-gradient(90deg,var(--neon-1),var(--neon-2)); transition:width 1.2s cubic-bezier(.2,.9,.3,1); }
 
-  .contact-card{
-    background:linear-gradient(180deg, rgba(12,15,18,0.4), rgba(12,15,18,0.25));
-    border-radius:14px; padding:18px; color:var(--muted); display:flex; flex-direction:column; gap:12px;
-    align-items:stretch; justify-content:center; border:1px solid rgba(255,255,255,0.04);
-  }
-  .contact-card .loc{font-weight:600;color:var(--gold)}
-  .contact-list{display:flex; gap:10px; flex-wrap:wrap}
-  .contact-pill{
-    display:inline-flex; align-items:center; gap:8px; padding:10px 12px; border-radius:12px; background:rgba(255,255,255,0.03);
-    color:var(--muted); font-weight:600; font-size:14px;
-  }
-  .wa{
-    background:linear-gradient(90deg,#25D366,#20b858);
-    color:#011710; padding:12px 14px; border-radius:12px; font-weight:800;
-    box-shadow:0 8px 24px rgba(23,97,42,0.18); border:none;
-  }
+    /* CTA button on each menu */
+    .cta-menu { margin-left:12px; }
+    .cta-btn {
+      padding:10px 12px; border-radius:10px; border:none; cursor:pointer; font-weight:800;
+      background:linear-gradient(90deg,var(--neon-1),var(--neon-2)); color:#071124; box-shadow:0 10px 30px rgba(139,92,246,0.12);
+      transition: transform .16s ease, box-shadow .16s ease;
+    }
+    .cta-btn:hover{ transform:translateY(-4px) scale(1.02); box-shadow:0 18px 40px rgba(139,92,246,0.18); }
 
-/* ---------- GALLERY / MENU ---------- */
-  .section-title{display:flex; align-items:end; gap:12px; margin-bottom:18px}
-  .section-title h4{color:var(--gold); font-size:18px; margin:0}
-  .grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-  }
-  .card{
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-    border-radius:12px; overflow:hidden;
-    transition:transform .45s cubic-bezier(.2,.9,.2,1), box-shadow .45s;
-    border:1px solid rgba(255,255,255,0.03);
-  }
-  .card:hover{ transform:translateY(-10px); box-shadow:0 25px 60px rgba(2,6,23,0.6); }
-  .card-media{height:220px; background-size:cover; background-position:center;}
-  .card-body{padding:14px}
-  .card-body h5{margin:0 0 8px; color:#fff; font-size:16px}
-  .card-body p{margin:0; color:var(--muted); font-size:14px}
-  .price{margin-top:10px;color:var(--gold);font-weight:700}
+    /* packages */
+    .packages{ display:grid; grid-template-columns: repeat(3,1fr); gap:12px; margin-top:12px; }
+    .pkg { padding:14px; border-radius:12px; text-align:center; border:1px solid rgba(255,255,255,0.03); background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); }
+    .pkg .title{ font-weight:900; color:var(--neon-1); }
+    .pkg .price{ font-size:18px; font-weight:900; color:var(--gold); margin-top:8px; }
+    .pkg ul{ list-style: none; padding:0; margin:10px 0 0 0; color:var(--muted); text-align:left; }
 
-/* ---------- FOOTER ---------- */
-  footer{margin-top:28px;padding:28px;text-align:center;color:rgba(255,255,255,0.65);font-size:14px}
+    /* promo countdown */
+    .promo{ margin-top:12px; display:flex; gap:12px; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    .countdown{ display:flex; gap:10px; align-items:center; }
+    .cd-box{ background:rgba(255,255,255,0.02); padding:10px 12px; border-radius:10px; min-width:64px; text-align:center; }
+    .cd-num{ font-weight:900; color:var(--neon-2); font-size:16px; }
 
-/* ---------- REVEAL ANIMATIONS (initially hidden) ---------- */
-  .reveal{opacity:0; transform:translateY(18px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.9,.2,1)}
+    /* testimonials */
+    .testi-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:12px; }
+    .testi-item{ padding:12px; border-radius:12px; background:linear-gradient(180deg, rgba(255,255,255,0.01), transparent); border:1px solid rgba(255,255,255,0.03); }
 
-/* ---------- RESPONSIVE ---------- */
-  @media (max-width:1000px){
-    .grid{grid-template-columns:repeat(2,1fr)}
-    .info{grid-template-columns:1fr; margin-top:18px}
-    .hero{height:66vh; min-height:520px}
-  }
-  @media (max-width:640px){
-    .wrap{padding:16px}
-    .hero{height:62vh; min-height:420px}
-    .grid{grid-template-columns:1fr}
-    .hero__content{padding:20px}
-  }
-</style>
+    /* recent orders */
+    .recent li{ display:flex; justify-content:space-between; padding:10px 6px; border-bottom:1px dashed rgba(255,255,255,0.03); font-size:14px; }
+
+    footer{ text-align:center; margin:34px 0 20px; color:var(--muted); font-size:13px; }
+
+    /* scroll animation utilities */
+    .scroll-anim{ opacity:0; transform:translateY(18px); transition:opacity .7s ease, transform .7s ease; }
+    .scroll-anim.visible{ opacity:1; transform:none; }
+
+    /* responsive tweaks */
+    @media (max-width:980px){
+      .hero { grid-template-columns:1fr; }
+      .packages { grid-template-columns:1fr; }
+      .brand-title { font-size:16px; }
+      .menu-item{ flex-direction:column; align-items:flex-start; }
+      .price{ text-align:left; width:100%; margin-top:8px; }
+      .cta-menu{ margin-left:0; margin-top:8px; width:100%; }
+      .menu-row{ flex-direction:column; align-items:flex-start; gap:8px; width:100%; }
+      .logo-sm{ width:48px; height:48px; font-size:16px; }
+    }
+    @media (max-width:600px){
+      .brand-neon{ font-size:2.8rem; }
+      .brand-sub{ display:none; }
+      .promo{ flex-direction:column; align-items:flex-start; gap:8px; }
+    }
+  </style>
 </head>
 <body>
 
-<div class="wrap">
-
-  <!-- HERO -->
-  <section class="hero" aria-label="Hero — Tahu Bakso Premium">
-    <div class="hero__media" aria-hidden="true"></div>
-
-    <div class="hero__content">
-      <div class="brand reveal" style="--delay:.05s">Tahu Bakso Mba Lis</div>
-      <div class="slogan reveal" style="--delay:.15s">
-        Tahu lembut + bakso gurih — resep turun-temurun, disajikan ala bintang lima.
-      </div>
-
-      <div class="cta-row reveal" style="--delay:.25s">
-        <a class="btn btn--order" href="https://wa.me/6285940662957" target="_blank" rel="noopener">
-          🧾 Pesan Sekarang via WhatsApp
-        </a>
-        <a class="btn btn--menu" href="#menu">Lihat Menu</a>
-      </div>
-
-      <div class="hero__badge reveal" style="--delay:.35s">Higienis • Bumbu Rumahan • Ready Stock</div>
+  <!-- OPENING -->
+  <div id="opening" aria-hidden="false">
+    <div class="opening-card" role="banner" aria-live="polite">
+      <div class="brand-neon" id="brandText">TAHU BAKSO MBA LIS</div>
+      <div class="subtag">Kenikmatan Kekinian — Premium • Praktis • Bikin Nagih</div>
+      <div class="shimmer" aria-hidden="true"></div>
     </div>
-  </section>
-
-  <!-- INFO ROW -->
-  <div class="info reveal" id="about">
-    <div class="about-card">
-      <h3>Tentang Kami</h3>
-      <p>
-        Kami adalah produsen Tahu Bakso mba lis sejak 2020. Memadukan bahan pilihan, proses higienis, dan teknik tradisional sehingga menghasilkan tekstur tahu lembut dan bakso empuk yang kaya rasa.
-      </p>
-
-      <div style="display:flex;gap:12px;margin-top:14px;flex-wrap:wrap">
-        <div style="padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:600;color:var(--muted)">
-          🍽️ Produksi Harian
-        </div>
-        <div style="padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:600;color:var(--muted)">
-          🚚 Kirim ke Seluruh Jawa
-        </div>
-        <div style="padding:8px 12px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:600;color:var(--muted)">
-          🧾 Kemasan Kado & Grosir
-        </div>
-      </div>
-    </div>
-
-    <aside class="contact-card">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:10px">
-        <div>
-          <div style="font-size:13px;color:var(--muted)">Lokasi</div>
-          <div class="loc">Purwokerto,banyumas,jawa tengah</div>
-        </div>
-        <div style="text-align:right">
-          <div style="font-size:13px;color:var(--muted)">Jam Buka</div>
-          <div style="font-weight:700;color:var(--muted)">09:00 — 20:00</div>
-        </div>
-      </div>
-
-      <div style="margin-top:12px" class="contact-list">
-        <a class="contact-pill wa" href="https://wa.me/6285940662957" target="_blank" rel="noopener">WhatsApp</a>
-        <a class="contact-pill" href="https://facebook.com/tahubaksopremium" target="_blank" rel="noopener">Facebook</a>
-        <a class="contact-pill" href="https://instagram.com/tahubaksopremium" target="_blank" rel="noopener">Instagram</a>
-      </div>
-
-      <div style="margin-top:12px;font-size:13px;color:var(--muted)">
-        <strong>Note:</strong> Untuk pesanan besar / custom, chat WA agar kami siapkan stok & kirim sesuai jadwal.
-      </div>
-    </aside>
   </div>
 
-  <!-- MENU / GALLERY -->
-  <section id="menu" class="reveal">
-    <div class="section-title">
-      <h4>Menu Istimewa</h4>
-    </div>
+  <!-- MAIN -->
+  <div class="wrap" id="mainContent" style="display:none;">
 
-    <div class="grid" id="gallery">
-      <!-- Card 1 -->
-      <article class="card reveal">
-        <div class="card-media" style="background-image:url('https://images.pexels.com/photos/13096420/pexels-photo-13096420.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600')"></div>
-        <div class="card-body">
-          <h5>Tahu Bakso Original</h5>
-          <p>Tekstur tahu lembut berisi bakso empuk, saus khas rumahan.</p>
-          <div class="price">Rp 25.000 / 10 pcs</div>
+    <header class="site" role="navigation" aria-label="Main">
+      <div class="brand-row">
+        <div class="logo-sm">TB</div>
+        <div>
+          <div class="brand-title">TahuBakso • Mba Lis</div>
+          <div class="brand-sub">Sejak 2020 — HomeMade • Quality First</div>
         </div>
-      </article>
+      </div>
 
-      <!-- Card 2 -->
-      <article class="card reveal">
-        <div class="card-media" style="background-image:url('https://images.pexels.com/photos/8427386/pexels-photo-8427386.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600')"></div>
-        <div class="card-body">
-          <h5>Tahu Bakso Pedas</h5>
-          <p>Tambahan sambal special, bikin nagih untuk yang suka pedas.</p>
-          <div class="price">Rp 28.000 / 10 pcs</div>
+      <nav class="inline" aria-label="Quick links">
+        <button class="btn" onclick="scrollTo('menu')">Menu</button>
+        <button class="btn" onclick="scrollTo('packages')">Paket</button>
+        <button class="btn" onclick="scrollTo('sales')">Penjualan</button>
+        <a class="btn primary" href="#contact" onclick="scrollTo('contact')">Pesan Sekarang</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <div class="card hero-left scroll-anim" id="heroCard">
+        <h1 id="heroTitle">Rasakan Tahu Bakso Premium — Gurih, Renyah & Bumbu Autentik</h1>
+        <div class="muted">Siap untuk acara, jualan, atau camilan harian. Pilih paket, klik pesan, kami antar.</div>
+
+        <div class="kpi-row" role="list" aria-label="Key performance">
+          <div class="kpi scroll-anim" data-anim>
+            <div class="big" id="kpiSold">0</div>
+            <small>Terjual (30 hari)</small>
+          </div>
+          <div class="kpi scroll-anim" data-anim>
+            <div class="big" id="kpiRevenue">Rp 0</div>
+            <small>Omzet (bulan ini)</small>
+          </div>
+          <div class="kpi scroll-anim" data-anim>
+            <div class="big" id="kpiRating">0 ★</div>
+            <small>Rating (avg)</small>
+          </div>
         </div>
-      </article>
 
-      <!-- Card 3 -->
-      <article class="card reveal">
-        <div class="card-media" style="background-image:url('https://images.pexels.com/photos/13096421/pexels-photo-13096421.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600')"></div>
-        <div class="card-body">
-          <h5>Tahu Bakso Keju</h5>
-          <p>Lelehan keju gurih di dalamnya — cocok buat yang manjah rasa.</p>
-          <div class="price">Rp 30.000 / 10 pcs</div>
+        <div id="sales" style="margin-top:14px;">
+          <h3 style="margin:0 0 8px 0; color:var(--neon-1)">Detail Penjualan & Insight</h3>
+          <div class="card scroll-anim" style="padding:12px;">
+            <div style="display:flex;gap:12px;flex-wrap:wrap;">
+              <div style="flex:1;min-width:160px">
+                <strong>Target Bulanan</strong>
+                <div class="muted">Rp 60.000.000</div>
+                <div style="height:8px;background:rgba(255,255,255,0.04);border-radius:999px;margin-top:8px;overflow:hidden">
+                  <div id="progTarget" style="width:0%;height:100%;background:linear-gradient(90deg,var(--gold),#ffeb9b)"></div>
+                </div>
+              </div>
+              <div style="flex:1;min-width:160px">
+                <strong>Konversi Pemesanan</strong>
+                <div class="muted">Order success rate: <span id="convRate">0%</span></div>
+              </div>
+              <div style="flex:1;min-width:160px">
+                <strong>Return Rate</strong>
+                <div class="muted">Produk dikembalikan: <span id="returnRate">0%</span></div>
+              </div>
+            </div>
+
+            <div style="margin-top:12px;">
+              <strong>Pesanan Terakhir</strong>
+              <ul class="recent" id="recentOrders" aria-live="polite"></ul>
+            </div>
+          </div>
         </div>
-      </article>
 
-      <!-- Card 4 -->
-      <article class="card reveal">
-        <div class="card-media" style="background-image:url('https://images.pexels.com/photos/13096422/pexels-photo-13096422.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600')"></div>
-        <div class="card-body">
-          <h5>Frozen Pack</h5>
-          <p>Pack beku siap goreng, hemat & tahan lama untuk rumah tangga.</p>
-          <div class="price">Rp 50.000 / 20 pcs</div>
+      </div>
+
+      <aside class="card scroll-anim" aria-label="Quick summary">
+        <h3 style="margin-top:0">Ringkasan Cepat</h3>
+
+        <div style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+          <div style="display:flex;justify-content:space-between">
+            <div><small class="muted">Avg Harga /pcs</small><div>Rp <strong id="avgPrice">4.500</strong></div></div>
+            <div><small class="muted">Stok Hari Ini</small><div><strong id="stock">320</strong> pcs</div></div>
+          </div>
+
+          <div>
+            <small class="muted">Testimoni Singkat</small>
+            <div class="testi-grid" style="margin-top:8px;">
+              <div class="testi-item">“Gokil enak — bumbu nendang!” <small style="color:var(--muted)">— Rina</small></div>
+              <div class="testi-item">“Recomended buat jualan, laris.” <small style="color:var(--muted)">— Budi</small></div>
+            </div>
+          </div>
+
+          <div>
+            <small class="muted">Penjualan Hari Ini</small>
+            <div style="font-weight:800; font-size:20px; color:var(--neon-2)" id="todaySold">0 pcs</div>
+          </div>
         </div>
-      </article>
+      </aside>
+    </section>
 
-      <!-- Card 5 -->
-      <article class="card reveal">
-        <div class="card-media" style="background-image:url('https://images.pexels.com/photos/13096423/pexels-photo-13096423.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=900&w=1600')"></div>
-        <div class="card-body">
-          <h5>Paket Hemat</h5>
-          <p>Mix berbagai varian, pas buat arisan & hajatan kecil.</p>
-          <div class="price">Rp 70.000 / 30 pcs</div>
+    <!-- MENU -->
+    <section class="card scroll-anim" id="menu" aria-labelledby="menuTitle" style="margin-top:18px;">
+      <h3 id="menuTitle" style="margin:0 0 10px 0;color:var(--neon-1)">Menu & Harga</h3>
+
+      <div class="menu-list" id="menuList">
+        <!-- Menu items inserted in HTML for easy copy, with percent and CTA -->
+        <div class="menu-item" data-percent="72">
+          <div class="menu-meta">
+            <h4>Tahu Bakso Original <span class="badge">Best seller</span><span class="sell-percent">72%</span></h4>
+            <div class="muted">Isi: bakso sapi + bumbu khas</div>
+            <div class="percent-bar" aria-hidden="true"><div class="percent-fill"></div></div>
+          </div>
+          <div class="menu-row">
+            <div class="price">Rp 4.500 / pcs</div>
+            <div class="cta-menu">
+              <button class="cta-btn" onclick="orderItem('Tahu Bakso Original', 'Rp 4.500')">Pesan Sekarang</button>
+            </div>
+          </div>
         </div>
-      </article>
 
-      <!-- Card 6 (kemasan / merch) -->
-      <article class="card reveal">
-        <div class="card-media" style="background-image:url('https://upload.wikimedia.org/wikipedia/commons/9/99/Tahu_Bakso.jpg')"></div>
-        <div class="card-body">
-          <h5>Kemasan Premium</h5>
-          <p>Karton & pouch food-grade; cocok buat oleh-oleh & kado.</p>
-          <div class="price">Custom / kontak WA</div>
+        <div class="menu-item" data-percent="55">
+          <div class="menu-meta">
+            <h4>Tahu Bakso Pedas <span class="badge">Hot</span><span class="sell-percent">55%</span></h4>
+            <div class="muted">Pedas level: Medium (bisa request)</div>
+            <div class="percent-bar" aria-hidden="true"><div class="percent-fill"></div></div>
+          </div>
+          <div class="menu-row">
+            <div class="price">Rp 4.800 / pcs</div>
+            <div class="cta-menu">
+              <button class="cta-btn" onclick="orderItem('Tahu Bakso Pedas', 'Rp 4.800')">Pesan Sekarang</button>
+            </div>
+          </div>
         </div>
-      </article>
-    </div>
-  </section>
 
-  <footer class="reveal">
-    © 2025 Tahu Bakso Mba lis — All Rights Reserved • developer by : akka
-  </footer>
-</div>
+        <div class="menu-item" data-percent="43">
+          <div class="menu-meta">
+            <h4>Tahu Bakso Keju <span class="badge">Melt</span><span class="sell-percent">43%</span></h4>
+            <div class="muted">Keju meleleh, favorit anak muda</div>
+            <div class="percent-bar" aria-hidden="true"><div class="percent-fill"></div></div>
+          </div>
+          <div class="menu-row">
+            <div class="price">Rp 5.500 / pcs</div>
+            <div class="cta-menu">
+              <button class="cta-btn" onclick="orderItem('Tahu Bakso Keju', 'Rp 5.500')">Pesan Sekarang</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
-<!-- JS: reveal & lazy polish -->
-<script>
-  // simple reveal using IntersectionObserver for smooth mobile perf
-  (function(){
-    const observer = new IntersectionObserver((entries, obs) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('active');
-          entry.target.style.opacity = 1;
-          entry.target.style.transform = 'translateY(0)';
-          obs.unobserve(entry.target);
-        }
+    <!-- PACKAGES -->
+    <section class="card scroll-anim" id="packages" style="margin-top:18px;">
+      <h3 style="margin:0 0 10px 0;color:var(--neon-1)">Paket Spesial</h3>
+      <div class="packages" role="list">
+        <div class="pkg" data-package="Paket Hemat 20pcs">
+          <div class="title">Paket Hemat</div>
+          <div class="price">Rp 65.000</div>
+          <ul><li>20 pcs tahu bakso</li><li>Gratis plastik + sambal</li><li>Estimasi 1-2 hari</li></ul>
+          <div style="margin-top:10px"><button class="cta-btn" onclick="orderItem('Paket Hemat 20pcs', 'Rp 65.000')">Pesan Sekarang</button></div>
+        </div>
+
+        <div class="pkg" data-package="Paket Lengkap 50pcs">
+          <div class="title">Paket Lengkap</div>
+          <div class="price">Rp 150.000</div>
+          <ul><li>50 pcs variasi</li><li>Dus rapi + saus premium</li><li>Diskon reseller</li></ul>
+          <div style="margin-top:10px"><button class="cta-btn" onclick="orderItem('Paket Lengkap 50pcs', 'Rp 150.000')">Pesan Sekarang</button></div>
+        </div>
+
+        <div class="pkg" data-package="Paket Sultan 120pcs">
+          <div class="title">Paket Sultan</div>
+          <div class="price">Rp 350.000</div>
+          <ul><li>120 pcs (cocok event)</li><li>Katering + antar prioritas</li><li>Free branding</li></ul>
+          <div style="margin-top:10px"><button class="cta-btn" onclick="orderItem('Paket Sultan 120pcs', 'Rp 350.000')">Pesan Sekarang</button></div>
+        </div>
+      </div>
+
+      <!-- PROMO -->
+      <div class="promo" style="margin-top:14px;">
+        <div>
+          <strong style="color:var(--neon-1)">Promo Flash Sale</strong>
+          <div class="muted">Diskon 15% untuk 50 pembeli pertama hari ini — s.d. jam:</div>
+        </div>
+        <div class="countdown" aria-live="polite" role="timer" id="countdownArea">
+          <div class="cd-box"><div class="cd-num" id="cdHours">00</div><small>jam</small></div>
+          <div class="cd-box"><div class="cd-num" id="cdMinutes">00</div><small>mnt</small></div>
+          <div class="cd-box"><div class="cd-num" id="cdSeconds">00</div><small>dtk</small></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="card scroll-anim" style="margin-top:18px;">
+      <h3 style="margin:0 0 10px 0;color:var(--neon-1)">Testimoni & Ulasan</h3>
+      <div class="testi-grid">
+        <div class="testi-item">⭐ 4.9 — “Aku pesan paket lengkap buat arisan. Tebak? Habis dalam 15 menit.” — <small style="color:var(--muted)">Sari</small></div>
+        <div class="testi-item">⭐ 5.0 — “Rasa konsisten, layanan cepat. Bakal repeat order.” — <small style="color:var(--muted)">Joko</small></div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="card scroll-anim" id="contact" style="margin-top:18px;">
+      <h3 style="margin:0 0 10px 0;color:var(--neon-1)">Kontak & Pemesanan</h3>
+      <p class="muted">Paling praktis: klik tombol Pesan Sekarang pada menu / paket — langsung chat WA otomatis dengan format pesan.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <button class="btn primary" onclick="orderItem('General Order', '')">Pesan via WhatsApp</button>
+        <a class="btn" href="mailto:halo@tahubakso.id">Email: halo@tahubakso.id</a>
+      </div>
+    </section>
+
+    <footer class="scroll-anim">
+      © <span id="year"></span> TahuBakso • Ultimate Premium • Dibuat dengan cinta & minyak goreng
+    </footer>
+  </div>
+
+  <!-- Scripts: keep light & local animations -->
+  <script>
+    // --- Opening: simple neon intro then show main
+    (function(){
+      const opening = document.getElementById('opening');
+      const main = document.getElementById('mainContent');
+      // auto hide opening after 2.2s for snappy UX
+      setTimeout(()=> {
+        opening.style.transition = 'opacity .6s cubic-bezier(.2,.9,.3,1), transform .6s ease';
+        opening.style.opacity = '0'; opening.style.transform = 'translateY(-28px) scale(.98)';
+        setTimeout(()=>{ opening.remove(); main.style.display='block'; main.style.opacity=0; main.style.transform='translateY(6px)';
+          requestAnimationFrame(()=>{ main.style.transition='opacity .6s ease, transform .6s ease'; main.style.opacity=1; main.style.transform='none'; });
+        }, 520);
+      }, 2200);
+    })();
+
+    // --- Fake dataset (you can replace with API later) ---
+    const DATA = {
+      sold30: 1287,
+      revenueMonth: 48000000,
+      ratingAvg: 4.9,
+      todaySold: 86,
+      avgPrice: 4500,
+      stock: 320,
+      convertRate: 48,
+      returnRate: 1.6,
+      recentOrders: [
+        {name:'Rina', qty:10, status:'Selesai'},
+        {name:'Budi', qty:5, status:'Dikirim'},
+        {name:'Sari', qty:3, status:'Pending'},
+        {name:'Andi', qty:20, status:'Selesai'}
+      ]
+    };
+
+    // --- Helpers ---
+    function formatIDR(n){ return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+    function animateCount(el, to, duration=900, prefix='', suffix=''){
+      if(!el) return;
+      const start = 0, startTime = performance.now();
+      (function tick(now){
+        const t = Math.min(1, (now - startTime) / duration);
+        const eased = 1 - Math.pow(1 - t, 3);
+        const val = Math.floor(start + (to - start) * eased);
+        el.textContent = prefix + (typeof to === 'number' && to >= 1000 && prefix ? formatIDR(val) : val) + suffix;
+        if(t < 1) requestAnimationFrame(tick);
+      })(performance.now());
+    }
+
+    // --- Initialize UI with DATA ---
+    document.addEventListener('DOMContentLoaded', ()=> {
+      // KPI numbers
+      animateCount(document.getElementById('kpiSold'), DATA.sold30, 1000);
+      document.getElementById('kpiRevenue').textContent = 'Rp ' + formatIDR(DATA.revenueMonth);
+      document.getElementById('kpiRating').textContent = DATA.ratingAvg + ' ★';
+      document.getElementById('todaySold').textContent = DATA.todaySold + ' pcs';
+      document.getElementById('avgPrice').textContent = formatIDR(DATA.avgPrice);
+      document.getElementById('stock').textContent = DATA.stock;
+      document.getElementById('convRate').textContent = DATA.convertRate + '%';
+      document.getElementById('returnRate').textContent = DATA.returnRate + '%';
+
+      // Recent orders list
+      const ro = document.getElementById('recentOrders');
+      DATA.recentOrders.forEach(o=>{
+        const li = document.createElement('li');
+        li.innerHTML = `<span>${o.name} • ${o.qty} pcs</span><strong style="color:var(--neon-2)">${o.status}</strong>`;
+        ro.appendChild(li);
       });
-    }, {root:null, rootMargin:'0px', threshold: 0.12});
 
-    document.querySelectorAll('.reveal').forEach((el,i) => {
-      el.style.opacity = 0;
-      el.style.transform = 'translateY(18px)';
-      el.style.transition = 'opacity .8s ease '+(i*80)+'ms, transform .8s cubic-bezier(.2,.9,.2,1) '+(i*80)+'ms';
-      observer.observe(el);
+      // animate percent bars from data-percent attribute
+      document.querySelectorAll('.menu-item').forEach(item=>{
+        const pct = parseInt(item.getAttribute('data-percent') || '0', 10);
+        const fill = item.querySelector('.percent-fill');
+        if(fill) setTimeout(()=> fill.style.width = Math.max(0, Math.min(100, pct)) + '%', 300);
+      });
+
+      // progress towards monthly target
+      const targetPct = Math.min(100, Math.round((DATA.revenueMonth / 60000000) * 100));
+      document.getElementById('progTarget').style.width = targetPct + '%';
     });
 
-    // subtle parallax on hero media for desktop
-    const heroMedia = document.querySelector('.hero__media');
-    let lastY = 0;
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      // gentle translate
-      if(window.innerWidth > 800){
-        const t = Math.min(40, y * 0.06);
-        heroMedia.style.transform = 'translateY(' + (t/6) + 'px) scale(1.02)';
-      }
-      lastY = y;
-    }, {passive:true});
-  })();
-</script>
+    // --- Order actions: opens WA chat prefilled ---
+    function orderItem(itemName, price){
+      const wa = '6281234567890'; // <-- GANTI NOMOR WA DI SINI (format 628...)
+      const text = `Halo, saya mau pesan: ${itemName} ${price ? '('+price+')' : ''}%0ANama:%0AAlamat:%0AJumlah:%0AInfo Tambahan:`;
+      const url = `https://wa.me/${wa}?text=${encodeURIComponent(decodeURIComponent(text))}`;
+      window.open(url, '_blank');
+    }
 
+    // --- Promo countdown until end of day local ---
+    (function(){
+      const hEl = document.getElementById('cdHours'), mEl = document.getElementById('cdMinutes'), sEl = document.getElementById('cdSeconds');
+      function pad(n){ return String(n).padStart(2,'0'); }
+      function update(){
+        const now = new Date();
+        const end = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 23,59,59);
+        let diff = Math.max(0, Math.floor((end - now)/1000));
+        const h = Math.floor(diff/3600); diff%=3600;
+        const m = Math.floor(diff/60); const s = diff%60;
+        if(hEl) hEl.textContent = pad(h); if(mEl) mEl.textContent = pad(m); if(sEl) sEl.textContent = pad(s);
+      }
+      update(); setInterval(update, 1000);
+    })();
+
+    // --- Scroll reveal: intersection observer ---
+    (function(){
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting) e.target.classList.add('visible');
+        });
+      }, { threshold: 0.12 });
+      // Elements to observe
+      const elems = document.querySelectorAll('.scroll-anim, .menu-item, .pkg, .kpi, .testi-item, footer');
+      elems.forEach(el=> { el.classList.add('scroll-anim'); io.observe(el); });
+    })();
+
+    // --- Small helper scrollTo ---
+    function scrollTo(id){ const el = document.getElementById(id); if(el) el.scrollIntoView({behavior:'smooth', block:'start'}); }
+
+    // --- set year in footer ---
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+  </script>
 </body>
-   </html>
+  </html>
