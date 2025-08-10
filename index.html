@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tahu Bakso Premium</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: #111;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+    /* Opening Screen */
+    #opening {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      animation: fadeOut 0.5s ease forwards;
+      animation-delay: 2s;
+    }
+    #opening h1 {
+      color: red;
+      font-size: 3rem;
+      filter: blur(5px);
+      animation: focusText 2s forwards;
+    }
+    @keyframes focusText {
+      0% { filter: blur(5px); opacity: 0; }
+      50% { filter: blur(2px); opacity: 0.7; }
+      100% { filter: blur(0); opacity: 1; }
+    }
+    @keyframes fadeOut {
+      to { opacity: 0; visibility: hidden; }
+    }
+
+    /* Scroll reveal effect */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      filter: blur(5px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+
+    header {
+      background: linear-gradient(to right, #111, #222);
+      padding: 2rem;
+      text-align: center;
+      border-bottom: 2px solid gold;
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: gold;
+    }
+    header p {
+      font-size: 1.2rem;
+      color: #ccc;
+    }
+    section {
+      padding: 3rem 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    .price-list {
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border-radius: 10px;
+      border: 1px solid gold;
+    }
+    .price-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #333;
+      color: #fff;
+    }
+    .price-item:last-child {
+      border-bottom: none;
+    }
+    footer {
+      background: #000;
+      color: #ccc;
+      padding: 2rem;
+      text-align: center;
+      border-top: 2px solid gold;
+    }
+    footer a {
+      color: gold;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Opening Animation -->
+  <div id="opening">
+    <h1>True Focus</h1>
+  </div>
+
+  <!-- Main Content -->
+  <header>
+    <h1>Tahu Bakso Premium</h1>
+    <p>Kelezatan Tradisi, Rasa Bintang Lima</p>
+  </header>
+
+  <section class="reveal">
+    <h2>Tentang Perusahaan</h2>
+    <p>Kami adalah produsen Tahu Bakso premium yang memadukan bahan berkualitas tinggi dengan resep turun-temurun. Dengan pengolahan higienis dan rasa yang tak tertandingi, kami hadir untuk memanjakan lidah Anda.</p>
+  </section>
+
+  <section class="price-list reveal">
+    <h2>List Harga</h2>
+    <div class="price-item"><span>Tahu Bakso Original (10 pcs)</span><span>Rp 25.000</span></div>
+    <div class="price-item"><span>Tahu Bakso Pedas (10 pcs)</span><span>Rp 27.000</span></div>
+    <div class="price-item"><span>Paket Premium (25 pcs)</span><span>Rp 60.000</span></div>
+  </section>
+
+  <section class="reveal">
+    <h2>Kontak & Pemesanan</h2>
+    <p>Hubungi kami untuk pemesanan:</p>
+    <p>
+      📱 <a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a> |  
+      📘 <a href="https://facebook.com/tahubakso" target="_blank">Facebook</a> |  
+      📸 <a href="https://instagram.com/tahubakso" target="_blank">Instagram</a>
+    </p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Tahu Bakso Premium. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      for (let i = 0; i < reveals.length; i++) {
+        const windowHeight = window.innerHeight;
+        const revealTop = reveals[i].getBoundingClientRect().top;
+        const revealPoint = 150;
+        if (revealTop < windowHeight - revealPoint) {
+          reveals[i].classList.add('active');
+        }
+      }
+    }
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll();
+  </script>
+
+</body>
+  </html>
