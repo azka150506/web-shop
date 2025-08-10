@@ -1,163 +1,211 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tahu Bakso Premium</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap');
-    body {
-      margin: 0;
-      font-family: 'Poppins', sans-serif;
-      background-color: #111;
-      color: #f5f5f5;
-      overflow-x: hidden;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tahu Bakso Premium</title>
+
+<!-- Font & Icon -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<!-- ScrollReveal -->
+<script src="https://unpkg.com/scrollreveal"></script>
+
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
     }
+
+    body {
+        background-color: #111;
+        color: #fff;
+        overflow-x: hidden;
+    }
+
     /* Opening Screen */
     #opening {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 9999;
-      animation: fadeOut 0.5s ease forwards;
-      animation-delay: 2s;
-    }
-    #opening h1 {
-      color: red;
-      font-size: 3rem;
-      filter: blur(5px);
-      animation: focusText 2s forwards;
-    }
-    @keyframes focusText {
-      0% { filter: blur(5px); opacity: 0; }
-      50% { filter: blur(2px); opacity: 0.7; }
-      100% { filter: blur(0); opacity: 1; }
-    }
-    @keyframes fadeOut {
-      to { opacity: 0; visibility: hidden; }
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
     }
 
-    /* Scroll reveal effect */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      filter: blur(5px);
-      transition: all 0.8s ease;
-    }
-    .reveal.active {
-      opacity: 1;
-      transform: translateY(0);
-      filter: blur(0);
+    .split-text {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: gold;
+        overflow: hidden;
+        display: flex;
+        gap: 10px;
     }
 
+    .split-text span {
+        transform: translateY(100%);
+        display: inline-block;
+        animation: slideUp 0.8s ease forwards;
+    }
+
+    .split-text span:nth-child(1) { animation-delay: 0s; }
+    .split-text span:nth-child(2) { animation-delay: 0.2s; }
+    .split-text span:nth-child(3) { animation-delay: 0.4s; }
+    .split-text span:nth-child(4) { animation-delay: 0.6s; }
+
+    @keyframes slideUp {
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    /* Header */
     header {
-      background: linear-gradient(to right, #111, #222);
-      padding: 2rem;
-      text-align: center;
-      border-bottom: 2px solid gold;
+        background: #000;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 2px solid gold;
     }
     header h1 {
-      font-size: 2.5rem;
-      color: gold;
+        color: gold;
+        font-size: 2rem;
     }
-    header p {
-      font-size: 1.2rem;
-      color: #ccc;
-    }
+
     section {
-      padding: 3rem 2rem;
-      max-width: 900px;
-      margin: auto;
+        padding: 50px 20px;
+        max-width: 900px;
+        margin: auto;
     }
+
+    h2 {
+        color: gold;
+        margin-bottom: 20px;
+    }
+
     .price-list {
-      background: #1a1a1a;
-      padding: 1.5rem;
-      border-radius: 10px;
-      border: 1px solid gold;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
     }
-    .price-item {
-      display: flex;
-      justify-content: space-between;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #333;
-      color: #fff;
+
+    .card {
+        background: #1a1a1a;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        transition: transform 0.3s ease;
+        border: 1px solid gold;
     }
-    .price-item:last-child {
-      border-bottom: none;
+    .card:hover {
+        transform: translateY(-5px);
     }
+    .card img {
+        max-width: 100%;
+        border-radius: 10px;
+    }
+    .price {
+        font-size: 1.2rem;
+        color: gold;
+        margin-top: 10px;
+    }
+
+    /* Contact */
+    .contact a {
+        color: gold;
+        text-decoration: none;
+        margin: 0 10px;
+        font-size: 1.5rem;
+        transition: color 0.3s ease;
+    }
+    .contact a:hover {
+        color: white;
+    }
+
     footer {
-      background: #000;
-      color: #ccc;
-      padding: 2rem;
-      text-align: center;
-      border-top: 2px solid gold;
+        text-align: center;
+        padding: 20px;
+        border-top: 1px solid gold;
+        font-size: 0.9rem;
+        color: #aaa;
     }
-    footer a {
-      color: gold;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-  </style>
+</style>
 </head>
 <body>
 
-  <!-- Opening Animation -->
-  <div id="opening">
-    <h1>True Focus</h1>
-  </div>
+<!-- Opening Animation -->
+<div id="opening">
+    <div class="split-text">
+        <span>T</span>
+        <span>A</span>
+        <span>H</span>
+        <span>U</span>
+    </div>
+</div>
 
-  <!-- Main Content -->
-  <header>
+<header>
     <h1>Tahu Bakso Premium</h1>
-    <p>Kelezatan Tradisi, Rasa Bintang Lima</p>
-  </header>
+</header>
 
-  <section class="reveal">
+<section id="about">
     <h2>Tentang Perusahaan</h2>
-    <p>Kami adalah produsen Tahu Bakso premium yang memadukan bahan berkualitas tinggi dengan resep turun-temurun. Dengan pengolahan higienis dan rasa yang tak tertandingi, kami hadir untuk memanjakan lidah Anda.</p>
-  </section>
+    <p>Kami adalah produsen Tahu Bakso Premium yang berdiri sejak 2010. Mengutamakan kualitas bahan, rasa otentik, dan pelayanan terbaik untuk kepuasan pelanggan.</p>
+</section>
 
-  <section class="price-list reveal">
-    <h2>List Harga</h2>
-    <div class="price-item"><span>Tahu Bakso Original (10 pcs)</span><span>Rp 25.000</span></div>
-    <div class="price-item"><span>Tahu Bakso Pedas (10 pcs)</span><span>Rp 27.000</span></div>
-    <div class="price-item"><span>Paket Premium (25 pcs)</span><span>Rp 60.000</span></div>
-  </section>
+<section id="menu">
+    <h2>Daftar Harga</h2>
+    <div class="price-list">
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Tahu Bakso Original">
+            <h3>Tahu Bakso Original</h3>
+            <p class="price">Rp 25.000 / pack</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Tahu Bakso Pedas">
+            <h3>Tahu Bakso Pedas</h3>
+            <p class="price">Rp 27.000 / pack</p>
+        </div>
+        <div class="card">
+            <img src="https://via.placeholder.com/300x200" alt="Tahu Bakso Keju">
+            <h3>Tahu Bakso Keju</h3>
+            <p class="price">Rp 30.000 / pack</p>
+        </div>
+    </div>
+</section>
 
-  <section class="reveal">
-    <h2>Kontak & Pemesanan</h2>
-    <p>Hubungi kami untuk pemesanan:</p>
-    <p>
-      📱 <a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a> |  
-      📘 <a href="https://facebook.com/tahubakso" target="_blank">Facebook</a> |  
-      📸 <a href="https://instagram.com/tahubakso" target="_blank">Instagram</a>
-    </p>
-  </section>
+<section id="contact">
+    <h2>Kontak Kami</h2>
+    <p>Pesan sekarang melalui:</p>
+    <div class="contact">
+        <a href="https://wa.me/628123456789" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+    </div>
+</section>
 
-  <footer>
-    <p>&copy; 2025 Tahu Bakso Premium. All rights reserved.</p>
-  </footer>
+<footer>
+    &copy; 2025 Tahu Bakso Premium. All Rights Reserved.
+</footer>
 
-  <script>
-    // Scroll reveal
-    function revealOnScroll() {
-      const reveals = document.querySelectorAll('.reveal');
-      for (let i = 0; i < reveals.length; i++) {
-        const windowHeight = window.innerHeight;
-        const revealTop = reveals[i].getBoundingClientRect().top;
-        const revealPoint = 150;
-        if (revealTop < windowHeight - revealPoint) {
-          reveals[i].classList.add('active');
-        }
-      }
-    }
-    window.addEventListener('scroll', revealOnScroll);
-    revealOnScroll();
-  </script>
+<script>
+    // Opening screen timeout
+    setTimeout(() => {
+        document.getElementById('opening').style.display = 'none';
+    }, 2000);
+
+    // Scroll Reveal animation
+    ScrollReveal().reveal('section', {
+        distance: '50px',
+        duration: 1000,
+        easing: 'ease-in-out',
+        origin: 'bottom',
+        interval: 200
+    });
+</script>
 
 </body>
   </html>
